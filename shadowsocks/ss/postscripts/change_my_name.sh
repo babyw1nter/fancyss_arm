@@ -16,20 +16,20 @@ eval `dbus export ss`
 alias echo_date='echo 【$(TZ=UTC-8 date -R +%Y年%m月%d日\ %X)】:'
 #------------------------------------------
 start_v2ray(){
-	echo_date ："启动v2ray"
-	# do something here
+  echo_date ："启动v2ray"
+  # do something here
 }
 
 stop_v2ray(){
-	echo_date ："停止v2ray"
-	# do something here
+  echo_date ："停止v2ray"
+  # do something here
 }
 #------------------------------------------
 case $1 in
 start)
-	start_v2ray
-	;;
+  start_v2ray
+  ;;
 stop)
-	stop_v2ray
-	;;
+  stop_v2ray
+  ;;
 esac

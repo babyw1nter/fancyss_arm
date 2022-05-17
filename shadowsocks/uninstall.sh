@@ -10,10 +10,10 @@ sleep 1
 # 如果dnsmasq是mounted状态，先恢复
 MOUNTED=`mount|grep -o dnsmasq`
 if [ -n "$MOUNTED" ];then
-	echo_date 恢复dnsmasq-fastlookup为原版dnsmasq
-	killall dnsmasq >/dev/null 2>&1
-	umount /usr/sbin/dnsmasq
-	service restart_dnsmasq >/dev/null 2>&1
+  echo_date 恢复dnsmasq-fastlookup为原版dnsmasq
+  killall dnsmasq >/dev/null 2>&1
+  umount /usr/sbin/dnsmasq
+  service restart_dnsmasq >/dev/null 2>&1
 fi
 
 rm -rf /koolshare/ss/*

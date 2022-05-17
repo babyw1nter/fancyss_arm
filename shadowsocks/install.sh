@@ -10,119 +10,119 @@ mkdir -p /tmp/ss_backup
 
 # 判断路由架构和平台
 case $(uname -m) in
-	armv7l)
-		echo_date 固件平台【koolshare merlin armv7l】符合安装要求，开始安装插件！
-	;;
-	*)
-		echo_date 本插件适用于koolshare merlin armv7l固件平台，你的平台"$(uname -m)"不能安装！！！
-		echo_date 退出安装！
-		exit 1
-	;;
+  armv7l)
+    echo_date 固件平台【koolshare merlin armv7l】符合安装要求，开始安装插件！
+  ;;
+  *)
+    echo_date 本插件适用于koolshare merlin armv7l固件平台，你的平台"$(uname -m)"不能安装！！！
+    echo_date 退出安装！
+    exit 1
+  ;;
 esac
 
 # 低于7.2的固件不能安装
 firmware_version=`nvram get extendno|cut -d "X" -f2|cut -d "-" -f1|cut -d "_" -f1`
 firmware_comp=`versioncmp $firmware_version 7.2`
 if [ "$firmware_comp" == "1" ];then
-	echo_date 本插件不支持X7.2以下的固件版本，当前固件版本$firmware_version，请更新固件！
-	echo_date 退出安装！
-	exit 1
+  echo_date 本插件不支持X7.2以下的固件版本，当前固件版本$firmware_version，请更新固件！
+  echo_date 退出安装！
+  exit 1
 fi
 
 upgrade_ss_conf(){
-	nodes=`dbus list ssc|grep port|cut -d "=" -f1|cut -d "_" -f4|sort -n`
-	for node in $nodes
-	do
-		if [ "`dbus get ssconf_basic_use_rss_$node`" == "1" ];then
-			#ssr
-			dbus remove ssconf_basic_ss_v2ray_plugin_$node
-			dbus remove ssconf_basic_ss_v2ray_plugin_opts_$node
-			dbus remove ssconf_basic_koolgame_udp_$node
-		else
-			if [ -n "`dbus get ssconf_basic_koolgame_udp_$node`" ];then
-				#koolgame
-				dbus remove ssconf_basic_rss_protocol_$node
-				dbus remove ssconf_basic_rss_protocol_param_$node
-				dbus remove ssconf_basic_rss_obfs_$node
-				dbus remove ssconf_basic_rss_obfs_param_$node
-				dbus remove ssconf_basic_ss_v2ray_plugin_$node
-				dbus remove ssconf_basic_ss_v2ray_plugin_opts_$node
-			else
-				#ss
-				dbus remove ssconf_basic_rss_protocol_$node
-				dbus remove ssconf_basic_rss_protocol_param_$node
-				dbus remove ssconf_basic_rss_obfs_$node
-				dbus remove ssconf_basic_rss_obfs_param_$node
-				dbus remove ssconf_basic_koolgame_udp_$node
-				[ -z "`dbus get ssconf_basic_ss_v2ray_plugin_$node`" ] && dbus set ssconf_basic_ss_v2ray_plugin_$node="0"
-			fi
-		fi
-		dbus remove ssconf_basic_use_rss_$node
-	done
-	
-	use_node=`dbus get ssconf_basic_node`
-	[ -z "$use_node" ] && use_node="1"
-	dbus remove ss_basic_server
-	dbus remove ss_basic_mode
-	dbus remove ss_basic_port
-	dbus remove ss_basic_method
-	dbus remove ss_basic_ss_v2ray_plugin
-	dbus remove ss_basic_ss_v2ray_plugin_opts
-	dbus remove ss_basic_rss_protocol
-	dbus remove ss_basic_rss_protocol_param
-	dbus remove ss_basic_rss_obfs
-	dbus remove ss_basic_rss_obfs_param
-	dbus remove ss_basic_koolgame_udp
-	dbus remove ss_basic_use_rss
-	dbus remove ss_basic_use_kcp
-	sleep 1
-	[ -n "`dbus get ssconf_basic_server_$node`" ] && dbus set ss_basic_server=`dbus get ssconf_basic_server_$node`
-	[ -n "`dbus get ssconf_basic_mode_$node`" ] && dbus set ss_basic_mode=`dbus get ssconf_basic_mode_$node`
-	[ -n "`dbus get ssconf_basic_port_$node`" ] && dbus set ss_basic_port=`dbus get ssconf_basic_port_$node`
-	[ -n "`dbus get ssconf_basic_method_$node`" ] && dbus set ss_basic_method=`dbus get ssconf_basic_method_$node`
-	[ -n "`dbus get ssconf_basic_ss_v2ray_plugin_$node`" ] && dbus set ss_basic_ss_v2ray_plugin=`dbus get ssconf_basic_ss_v2ray_plugin_$node`
-	[ -n "`dbus get ssconf_basic_ss_v2ray_plugin_opts_$node`" ] && dbus set ss_basic_ss_v2ray_plugin_opts=`dbus get ssconf_basic_ss_v2ray_plugin_opts_$node`
-	[ -n "`dbus get ssconf_basic_rss_protocol_$node`" ] && dbus set ss_basic_rss_protocol=`dbus get ssconf_basic_rss_protocol_$node`
-	[ -n "`dbus get ssconf_basic_rss_protocol_param_$node`" ] && dbus set ss_basic_rss_protocol_param=`dbus get ssconf_basic_rss_protocol_param_$node`
-	[ -n "`dbus get ssconf_basic_rss_obfs_$node`" ] && dbus set ss_basic_rss_obfs=`dbus get ssconf_basic_rss_obfs_$node`
-	[ -n "`dbus get ssconf_basic_rss_obfs_param_$node`" ] && dbus set ss_basic_rss_obfs_param=`dbus get ssconf_basic_rss_obfs_param_$node`
-	[ -n "`dbus get ssconf_basic_koolgame_udp_$node`" ] && dbus set ss_basic_koolgame_udp=`dbus get ssconf_basic_koolgame_udp_$node`
-	[ -n "`dbus get ssconf_basic_use_kcp_$node`" ] && dbus set ss_basic_koolgame_udp=`dbus get ssconf_basic_use_kcp_$node`
+  nodes=`dbus list ssc|grep port|cut -d "=" -f1|cut -d "_" -f4|sort -n`
+  for node in $nodes
+  do
+    if [ "`dbus get ssconf_basic_use_rss_$node`" == "1" ];then
+      #ssr
+      dbus remove ssconf_basic_ss_v2ray_plugin_$node
+      dbus remove ssconf_basic_ss_v2ray_plugin_opts_$node
+      dbus remove ssconf_basic_koolgame_udp_$node
+    else
+      if [ -n "`dbus get ssconf_basic_koolgame_udp_$node`" ];then
+        #koolgame
+        dbus remove ssconf_basic_rss_protocol_$node
+        dbus remove ssconf_basic_rss_protocol_param_$node
+        dbus remove ssconf_basic_rss_obfs_$node
+        dbus remove ssconf_basic_rss_obfs_param_$node
+        dbus remove ssconf_basic_ss_v2ray_plugin_$node
+        dbus remove ssconf_basic_ss_v2ray_plugin_opts_$node
+      else
+        #ss
+        dbus remove ssconf_basic_rss_protocol_$node
+        dbus remove ssconf_basic_rss_protocol_param_$node
+        dbus remove ssconf_basic_rss_obfs_$node
+        dbus remove ssconf_basic_rss_obfs_param_$node
+        dbus remove ssconf_basic_koolgame_udp_$node
+        [ -z "`dbus get ssconf_basic_ss_v2ray_plugin_$node`" ] && dbus set ssconf_basic_ss_v2ray_plugin_$node="0"
+      fi
+    fi
+    dbus remove ssconf_basic_use_rss_$node
+  done
+  
+  use_node=`dbus get ssconf_basic_node`
+  [ -z "$use_node" ] && use_node="1"
+  dbus remove ss_basic_server
+  dbus remove ss_basic_mode
+  dbus remove ss_basic_port
+  dbus remove ss_basic_method
+  dbus remove ss_basic_ss_v2ray_plugin
+  dbus remove ss_basic_ss_v2ray_plugin_opts
+  dbus remove ss_basic_rss_protocol
+  dbus remove ss_basic_rss_protocol_param
+  dbus remove ss_basic_rss_obfs
+  dbus remove ss_basic_rss_obfs_param
+  dbus remove ss_basic_koolgame_udp
+  dbus remove ss_basic_use_rss
+  dbus remove ss_basic_use_kcp
+  sleep 1
+  [ -n "`dbus get ssconf_basic_server_$node`" ] && dbus set ss_basic_server=`dbus get ssconf_basic_server_$node`
+  [ -n "`dbus get ssconf_basic_mode_$node`" ] && dbus set ss_basic_mode=`dbus get ssconf_basic_mode_$node`
+  [ -n "`dbus get ssconf_basic_port_$node`" ] && dbus set ss_basic_port=`dbus get ssconf_basic_port_$node`
+  [ -n "`dbus get ssconf_basic_method_$node`" ] && dbus set ss_basic_method=`dbus get ssconf_basic_method_$node`
+  [ -n "`dbus get ssconf_basic_ss_v2ray_plugin_$node`" ] && dbus set ss_basic_ss_v2ray_plugin=`dbus get ssconf_basic_ss_v2ray_plugin_$node`
+  [ -n "`dbus get ssconf_basic_ss_v2ray_plugin_opts_$node`" ] && dbus set ss_basic_ss_v2ray_plugin_opts=`dbus get ssconf_basic_ss_v2ray_plugin_opts_$node`
+  [ -n "`dbus get ssconf_basic_rss_protocol_$node`" ] && dbus set ss_basic_rss_protocol=`dbus get ssconf_basic_rss_protocol_$node`
+  [ -n "`dbus get ssconf_basic_rss_protocol_param_$node`" ] && dbus set ss_basic_rss_protocol_param=`dbus get ssconf_basic_rss_protocol_param_$node`
+  [ -n "`dbus get ssconf_basic_rss_obfs_$node`" ] && dbus set ss_basic_rss_obfs=`dbus get ssconf_basic_rss_obfs_$node`
+  [ -n "`dbus get ssconf_basic_rss_obfs_param_$node`" ] && dbus set ss_basic_rss_obfs_param=`dbus get ssconf_basic_rss_obfs_param_$node`
+  [ -n "`dbus get ssconf_basic_koolgame_udp_$node`" ] && dbus set ss_basic_koolgame_udp=`dbus get ssconf_basic_koolgame_udp_$node`
+  [ -n "`dbus get ssconf_basic_use_kcp_$node`" ] && dbus set ss_basic_koolgame_udp=`dbus get ssconf_basic_use_kcp_$node`
 }
 
 # 如果插件是从低于3.6.5版本升级上来，则需要升级一次数据格式，完全是为超级老的版本而留着
 [ -f "/usr/bin/versioncmp" ] && {
-	SS_VERSION_OLD=`dbus get ss_basic_version_local`
-	[ -z "$SS_VERSION_OLD" ] && SS_VERSION_OLD=3.6.5
-	ss_comp=`/usr/bin/versioncmp $SS_VERSION_OLD 3.6.5`
-	if [ "$ss_comp" == "1" ];then
-		echo_date ！！！！！！！！！！！！！！！！！！！！！！！！！！!
-		echo_date 检测到SS版本号为 $SS_VERSION_OLD !
-		echo_date 从3.6.5开始，SS插件和之前版本的数据格式不完全兼容 !
-		echo_date 此次升级将会尝试升级原先的数据 !
-		echo_date 如果你安装此版本后仍然有问题，请尝试清空ss数据后重新录入 !
-		echo_date ！！！！！！！！！！！！！！！！！！！！！！！！！！!
-		upgrade_ss_conf
-	fi
+  SS_VERSION_OLD=`dbus get ss_basic_version_local`
+  [ -z "$SS_VERSION_OLD" ] && SS_VERSION_OLD=3.6.5
+  ss_comp=`/usr/bin/versioncmp $SS_VERSION_OLD 3.6.5`
+  if [ "$ss_comp" == "1" ];then
+    echo_date ！！！！！！！！！！！！！！！！！！！！！！！！！！!
+    echo_date 检测到SS版本号为 $SS_VERSION_OLD !
+    echo_date 从3.6.5开始，SS插件和之前版本的数据格式不完全兼容 !
+    echo_date 此次升级将会尝试升级原先的数据 !
+    echo_date 如果你安装此版本后仍然有问题，请尝试清空ss数据后重新录入 !
+    echo_date ！！！！！！！！！！！！！！！！！！！！！！！！！！!
+    upgrade_ss_conf
+  fi
 }
 
 if [ "$ss_basic_enable" == "1" ];then
-	echo_date 先关闭科学上网插件，保证文件更新成功!
-	sh /koolshare/ss/ssconfig.sh stop
+  echo_date 先关闭科学上网插件，保证文件更新成功!
+  sh /koolshare/ss/ssconfig.sh stop
 fi
 
 if [ -n "`ls /koolshare/ss/postscripts/P*.sh 2>/dev/null`" ];then
-	echo_date 备份触发脚本!
-	find /koolshare/ss/postscripts -name "P*.sh" | xargs -i mv {} -f /tmp/ss_backup
+  echo_date 备份触发脚本!
+  find /koolshare/ss/postscripts -name "P*.sh" | xargs -i mv {} -f /tmp/ss_backup
 fi
 
 # 如果dnsmasq是mounted状态，先恢复
 MOUNTED=`mount|grep -o dnsmasq`
 if [ -n "$MOUNTED" ];then
-	echo_date 恢复dnsmasq-fastlookup为原版dnsmasq
-	killall dnsmasq >/dev/null 2>&1
-	umount /usr/sbin/dnsmasq
-	service restart_dnsmasq >/dev/null 2>&1
+  echo_date 恢复dnsmasq-fastlookup为原版dnsmasq
+  killall dnsmasq >/dev/null 2>&1
+  umount /usr/sbin/dnsmasq
+  service restart_dnsmasq >/dev/null 2>&1
 fi
 
 echo_date 清理旧文件
@@ -200,9 +200,9 @@ chmod 755 /koolshare/scripts/ss*
 chmod 755 /koolshare/bin/*
 
 if [ -n "`ls /tmp/ss_backup/P*.sh 2>/dev/null`" ];then
-	echo_date 恢复触发脚本!
-	mkdir -p /koolshare/ss/postscripts
-	find /tmp/ss_backup -name "P*.sh" | xargs -i mv {} -f /koolshare/ss/postscripts
+  echo_date 恢复触发脚本!
+  mkdir -p /koolshare/ss/postscripts
+  find /tmp/ss_backup -name "P*.sh" | xargs -i mv {} -f /koolshare/ss/postscripts
 fi
 
 echo_date 创建一些二进制文件的软链接！
@@ -244,9 +244,9 @@ dbus set ss_basic_install_status="0"
 echo_date 科学上网插件安装成功！
 
 if [ "$ss_basic_enable" == "1" ];then
-	echo_date 重启科学上网插件！
-	dbus set ss_basic_action=1
-	sh /koolshare/ss/ssconfig.sh restart
+  echo_date 重启科学上网插件！
+  dbus set ss_basic_action=1
+  sh /koolshare/ss/ssconfig.sh restart
 fi
 echo_date 更新完毕，请等待网页自动刷新！
 

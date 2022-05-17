@@ -27,12 +27,12 @@ RAW=`pidof udp2raw`
 [ -n "$v1" ] && [ -z "$v2" ] && [ -z "$RAW" ] && message3=""
 [ -n "$v2" ] && [ -z "$v1" ] && [ -z "$RAW" ] && message3=""
 check_status(){
-	echo $message0 $message1 $message2 $message3 
+  echo $message0 $message1 $message2 $message3 
 }
 
 if [ "$ss_basic_enable" == "1" ];then
-	check_status > /tmp/ss_udp_status.log 2>&1
+  check_status > /tmp/ss_udp_status.log 2>&1
 else
-	echo 插件尚未启用！> /tmp/ss_udp_status.log 2>&1
+  echo 插件尚未启用！> /tmp/ss_udp_status.log 2>&1
 fi
 echo XU6J03M6 >> /tmp/ss_udp_status.log
