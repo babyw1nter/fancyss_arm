@@ -381,3 +381,10 @@ input[type='button']:focus {
   font-weight: normal;
   font-style: normal;
 }
+
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}

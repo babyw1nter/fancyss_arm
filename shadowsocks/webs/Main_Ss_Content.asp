@@ -1439,7 +1439,7 @@
         html = html + '<td style="width:65px;">'
         if ((c["node"]) == db_ss["ssconf_basic_node"] && db_ss["ss_basic_enable"] == "1") {
           if (c["rss_protocol"]) {
-            html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #f072a5;width:66px;cursor:pointer;" onclick="apply_Running_node(this);" value="运行中">'
+            html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #aff072;width:66px;cursor:pointer;" onclick="apply_Running_node(this);" value="运行中">'
           } else {
             if (c["koolgame_udp"] == "0" || c["koolgame_udp"] == "1") {
               html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #33CC33;width:66px;cursor:pointer;" onclick="apply_Running_node(this);" value="运行中">'
@@ -1490,6 +1490,7 @@
       E("tablets").style.display = ""
       E("tablet_1").style.display = ""
       E("apply_button").style.display = ""
+      E("ss-node-list-wrapper").style.display = "none"
       E("ss_node_list_table_th").style.display = "none"
       E("ss_node_list_table_td").style.display = "none"
       E("ss_node_list_table_btn").style.display = "none"
@@ -2120,6 +2121,7 @@
           E("apply_button").style.display = "none"
           E("ss_node_list_table_td").style.display = ""
           E("ss_node_list_table_btn").style.display = ""
+          E("ss-node-list-wrapper").style.display = ""
           refresh_table()
           update_ping_method()
         })
@@ -2345,6 +2347,7 @@
 
     function ss_node_info_return () {
       cancel_add_rule()
+      E("ss-node-list-wrapper").style.display = "none"
       E("ss_node_list_table_th").style.display = "none"
       E("ss_node_list_table_td").style.display = "none"
       E("ss_node_list_table_btn").style.display = "none"
@@ -3913,7 +3916,7 @@
                           </table>
                         </div>
                         <!-- 节点面板 -->
-                        <div id="ss-node-list-wrapper">
+                        <div id="ss-node-list-wrapper" class="clearfix" style="min-height: 690px; display: none;">
                         <div id="ss_node_list_table_th" style="display: none; height:40px;margin:-1px 0px 0px 0px">
                           <table style="margin:-1px 0px 0px 0px;table-layout:fixed;" width="100%" border="1"
                             align="center" cellpadding="4" cellspacing="0" bordercolor="#6b8fa3" class="FormTable1">
