@@ -61,9 +61,8 @@
   background: linear-gradient(to bottom, #919fa4 0%, #67767d 100%); /* W3C */
   font-size: 10pt;
   color: #fff;
-  padding: 10px 3.75px;
+  padding: 10px 5px;
   border-radius: 5px 5px 0px 0px;
-  width: 8.45601%;
 }
 .active {
   background: #2f3a3e;

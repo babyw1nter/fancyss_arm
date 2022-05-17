@@ -49,6 +49,9 @@
       hook_event()
       detect()
       setTimeout("get_ss_status_data()", 500)
+
+      var n = getNodeCount() //获取节点的数目
+      E("show_btn1_1").value = `节点管理(${n})`
     }
 
     function hide_elem () {
@@ -1346,13 +1349,16 @@
       })
     }
 
+    function getNodeCount () {
+      const confs = getAllConfigs()
+      return Object.keys(confs).length
+    }
+
     function refresh_html () {
       browser_compatibility1()
       confs = getAllConfigs()
-      var n = 0
-      for (var i in confs) {
-        n++
-      } //获取节点的数目
+      var n = getNodeCount() //获取节点的数目
+      E("show_btn1_1").value = `节点管理(${n})`
       if (eval(n) > "13.5") { //当节点数目大于13个的时候，显示为overflow，节点可以滚动
         if (isFirefox = navigator.userAgent.indexOf("Firefox") > 0) {
           E("ss_node_list_table_th").style.top = "426px"
@@ -1453,15 +1459,15 @@
           }
         } else {
           if (c["rss_protocol"]) {
-            html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #f072a5;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="应用">'
+            html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #f072a5;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="选择">'
           } else {
             if (c["koolgame_udp"] == "0" || c["koolgame_udp"] == "1") {
-              html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #33CC33;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="应用">'
+              html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #33CC33;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="选择">'
             } else {
               if (c["v2ray_use_json"] == "0" || c["v2ray_use_json"] == "1") { //判断节点为v2ray
-                html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #9900CC;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="应用">'
+                html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #9900CC;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="选择">'
               } else {
-                html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #00CCFF;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="应用">'
+                html = html + '<input id="apply_ss_node_' + c["node"] + '" type="button" class="ss_btn" style="color: #00CCFF;width:66px;cursor:pointer;" onclick="apply_this_ss_node(this);" value="选择">'
               }
             }
           }
@@ -1892,10 +1898,7 @@
       }
       if (checkTime > 4) {
         confs = getAllConfigs()
-        var n = 0
-        for (var i in confs) {
-          n++
-        } //获取节点的数目
+        var n = getNodeCount() //获取节点的数目
         var ping_flag = 0
         for (var field in confs) {
           var c = confs[field].ping
@@ -1923,10 +1926,7 @@
       }
       if (checkTime > 2) {
         confs = getAllConfigs()
-        var n = 0
-        for (var i in confs) {
-          n++
-        } //获取节点的数目
+        var n = getNodeCount() //获取节点的数目
         var webtest_flag = 0
         for (var field in confs) {
           var c = confs[field].webtest
