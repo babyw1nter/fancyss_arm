@@ -3917,36 +3917,10 @@
                         </div>
                         <!-- 节点面板 -->
                         <div id="ss-node-list-wrapper" class="clearfix" style="min-height: 690px; display: none;">
-                        <div id="ss_node_list_table_th" style="display: none; height:40px;margin:-1px 0px 0px 0px">
-                          <table style="margin:-1px 0px 0px 0px;table-layout:fixed;" width="100%" border="1"
-                            align="center" cellpadding="4" cellspacing="0" bordercolor="#6b8fa3" class="FormTable1">
-                            <tr height="40px">
-                              <th style="width:40px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(16)">模式</a></th>
-                              <th style="width:90px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(17)">节点名称</a></th>
-                              <th style="width:90px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(18)">服务器地址</a></th>
-                              <th style="width:37px;">端口</th>
-                              <th style="width:90px;">加密方式</th>
-                              <th style="width:78px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(19)">ping/丢包</a></th>
-                              <th style="width:36px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(20)">延迟</a></th>
-                              <th style="width:33px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(21)">编辑</a></th>
-                              <th style="width:33px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(22)">删除</a></th>
-                              <th style="width:65px;"><a class="hintstyle" href="javascript:void(0);"
-                                  onclick="openssHint(23)">使用</a></th>
-                            </tr>
-                          </table>
-                        </div>
-                        <div id="ss_node_list_table_td" style="display: none;">
-                          <div id="ss_node_list_table_main" style="width:748px;">
-                            <table id="ss_node_list_table" style="margin:-1px 0px 0px 0px;" width="100%" border="1"
+                          <div id="ss_node_list_table_th" style="display: none; height:40px;margin:-1px 0px 0px 0px">
+                            <table style="margin:-1px 0px 0px 0px;table-layout:fixed;" width="100%" border="1"
                               align="center" cellpadding="4" cellspacing="0" bordercolor="#6b8fa3" class="FormTable1">
-                              <tr id="hide_when_folw" height="40px" style="display: none;">
+                              <tr height="40px">
                                 <th style="width:40px;"><a class="hintstyle" href="javascript:void(0);"
                                     onclick="openssHint(16)">模式</a></th>
                                 <th style="width:90px;"><a class="hintstyle" href="javascript:void(0);"
@@ -3968,57 +3942,86 @@
                               </tr>
                             </table>
                           </div>
-                        </div>
-                        <div id="ss_node_list_table_btn" style="display: none;width: 100%;">
-                          <table width="100%" border="1" align="center" cellpadding="4" cellspacing="0"
-                            bordercolor="#6b8fa3" class="FormTable">
-                            <tr>
-                              <th style="width:20%;">ping测试</th>
-                              <td>
-                                <input class="ss_btn" style="cursor:pointer;" onClick="ping_test()" type="button"
-                                  value="ping测试" />
-                                <select id="ssconf_basic_ping_node" name="ssconf_basic_ping_node"
-                                  style="width:124px;margin:0px 0px 0px 2px;" class="input_option"
-                                  onchange="update_ping_method();"></select>
-                                <select id="ssconf_basic_ping_method" name="ssconf_basic_ping_method"
-                                  style="width:160px;margin:0px 0px 0px 2px;" class="input_option"></select>
-                                <input class="ss_btn" style="cursor:pointer;" onClick="remove_ping()" type="button"
-                                  value="清空结果" />
-                              </td>
-                            </tr>
-                            <tr>
-                              <th style="width:20%;">web测试</th>
-                              <td>
-                                <input class="ss_btn" style="cursor:pointer;" onClick="web_test()" type="button"
-                                  value="web测试" />
-                                <select id="ssconf_basic_test_node" name="ssconf_basic_test_node"
-                                  style="width:124px;margin:0px 0px 0px 2px;" class="input_option">
-                                </select>
-                                <select id="ssconf_basic_test_domain" name="ssconf_basic_test_domain"
-                                  style="width:160px;margin:0px 0px 0px 2px;" class="input_option">
-                                  <option class="content_input_fd" value="https://www.google.com.hk/">google.com
-                                  </option>
-                                  <option class="content_input_fd" value="https://www.twitter.com/">twitter.com</option>
-                                  <option class="content_input_fd" value="https://www.facebook.com/">facebook.com
-                                  </option>
-                                  <option class="content_input_fd" value="https://www.youtube.com/">youtube.com</option>
-                                </select>
-                                <input class="ss_btn" style="cursor:pointer;" onClick="remove_test()" type="button"
-                                  value="清空结果" />
-                              </td>
-                            </tr>
-                          </table>
-                          <table>
-                            <tr>
-                              <td>
-                                <div id="node_return_button" class="apply_gen" style="margin-left: 188px;;float: left;">
-                                  <input id="add_ss_node" class="button_gen" onClick="Add_profile()" type="button"
-                                    value="添加节点" />
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
-                        </div>
+                          <div id="ss_node_list_table_td" style="display: none;">
+                            <div id="ss_node_list_table_main" style="width:748px;">
+                              <table id="ss_node_list_table" style="margin:-1px 0px 0px 0px;" width="100%" border="1"
+                                align="center" cellpadding="4" cellspacing="0" bordercolor="#6b8fa3" class="FormTable1">
+                                <tr id="hide_when_folw" height="40px" style="display: none;">
+                                  <th style="width:40px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(16)">模式</a></th>
+                                  <th style="width:90px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(17)">节点名称</a></th>
+                                  <th style="width:90px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(18)">服务器地址</a></th>
+                                  <th style="width:37px;">端口</th>
+                                  <th style="width:90px;">加密方式</th>
+                                  <th style="width:78px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(19)">ping/丢包</a></th>
+                                  <th style="width:36px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(20)">延迟</a></th>
+                                  <th style="width:33px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(21)">编辑</a></th>
+                                  <th style="width:33px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(22)">删除</a></th>
+                                  <th style="width:65px;"><a class="hintstyle" href="javascript:void(0);"
+                                      onclick="openssHint(23)">使用</a></th>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                          <div id="ss_node_list_table_btn" style="display: none;width: 100%;">
+                            <table width="100%" border="1" align="center" cellpadding="4" cellspacing="0"
+                              bordercolor="#6b8fa3" class="FormTable">
+                              <tr>
+                                <th style="width:20%;">ping测试</th>
+                                <td>
+                                  <input class="ss_btn" style="cursor:pointer;" onClick="ping_test()" type="button"
+                                    value="ping测试" />
+                                  <select id="ssconf_basic_ping_node" name="ssconf_basic_ping_node"
+                                    style="width:124px;margin:0px 0px 0px 2px;" class="input_option"
+                                    onchange="update_ping_method();"></select>
+                                  <select id="ssconf_basic_ping_method" name="ssconf_basic_ping_method"
+                                    style="width:160px;margin:0px 0px 0px 2px;" class="input_option"></select>
+                                  <input class="ss_btn" style="cursor:pointer;" onClick="remove_ping()" type="button"
+                                    value="清空结果" />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th style="width:20%;">web测试</th>
+                                <td>
+                                  <input class="ss_btn" style="cursor:pointer;" onClick="web_test()" type="button"
+                                    value="web测试" />
+                                  <select id="ssconf_basic_test_node" name="ssconf_basic_test_node"
+                                    style="width:124px;margin:0px 0px 0px 2px;" class="input_option">
+                                  </select>
+                                  <select id="ssconf_basic_test_domain" name="ssconf_basic_test_domain"
+                                    style="width:160px;margin:0px 0px 0px 2px;" class="input_option">
+                                    <option class="content_input_fd" value="https://www.google.com.hk/">google.com
+                                    </option>
+                                    <option class="content_input_fd" value="https://www.twitter.com/">twitter.com
+                                    </option>
+                                    <option class="content_input_fd" value="https://www.facebook.com/">facebook.com
+                                    </option>
+                                    <option class="content_input_fd" value="https://www.youtube.com/">youtube.com
+                                    </option>
+                                  </select>
+                                  <input class="ss_btn" style="cursor:pointer;" onClick="remove_test()" type="button"
+                                    value="清空结果" />
+                                </td>
+                              </tr>
+                            </table>
+                            <table>
+                              <tr>
+                                <td>
+                                  <div id="node_return_button" class="apply_gen"
+                                    style="margin-left: 188px;;float: left;">
+                                    <input id="add_ss_node" class="button_gen" onClick="Add_profile()" type="button"
+                                      value="添加节点" />
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
                         </div>
                         <!--=====tablet_2=====-->
                         <div id="tablet_2" style="display: none;">
