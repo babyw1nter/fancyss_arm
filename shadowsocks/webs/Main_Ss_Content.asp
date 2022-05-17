@@ -3134,7 +3134,7 @@ function set_cron(action) {
 														<input id="show_btn3" class="show-btn3" style="cursor:pointer" type="button" value="黑白名单" />
 														<input id="show_btn3_1" class="show-btn3_1" style="cursor:pointer" type="button" value="KCP加速" />
 														<input id="show_btn3_2" class="show-btn3_2" style="cursor:pointer" type="button" value="UDP加速"/>
-														<input id="show_btn4" class="show-btn4" style="cursor:pointer" type="button" value="更新管理" />
+														<input id="show_btn4" class="show-btn4" style="cursor:pointer" type="button" value="规则管理" />
 														<input id="show_btn5" class="show-btn5" style="cursor:pointer" type="button" value="访问控制" />
 														<input id="show_btn6" class="show-btn6" style="cursor:pointer" type="button" value="附加功能" />
 														<input id="show_btn7" class="show-btn7" style="cursor:pointer" type="button" value="查看日志" />
